@@ -66,7 +66,7 @@ body {
   line-height: 1.5;
   color: #fff;
   text-align: left;
-  background-image: url("/img/maxresdefault.jpg");
+  background-image: url("https://cloud-object-storage-th-cos-standard-5mr.s3.us-south.cloud-object-storage.appdomain.cloud/26675.jpg");
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -110,7 +110,7 @@ ol,
 ul,
 dl {
   margin-top: 0;
-  margin-bottom: 1rem;
+ 
 }
 
 ol ol,
@@ -4351,6 +4351,19 @@ input[type=button].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
+
+.cardl {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -4375,6 +4388,46 @@ input[type=button].btn-block {
   min-height: 1px;
   padding: 1.25rem;
   background-color: #7a7a7a;
+  font-size: 30px;
+  
+} 
+
+.card-bodys {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  background-color: #7a7a7a;
+  font-size: 30px;
+  height: 350px;
+  
+} 
+
+.card-bodyl {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  font-size: 30px;
+  
+} 
+
+.card-bodyd {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  background-color: #7a7a7a;
+  font-size: 25px;
+  height: 95px;
+  
+} 
+
+.card-body-logo{
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+ 
+  font-size: 25px;
+  height: 100px;
+  margin-left: 1rem;
   
 }
 
@@ -4415,6 +4468,14 @@ input[type=button].btn-block {
   background-color: #585858;
   border-bottom: 1px solid #080808;
 }
+
+.card-headerr {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #585858;
+  border-bottom: 1px solid #080808;
+}
+
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
@@ -10337,3 +10398,24 @@ body {
   text-align: center;
   font-size: 14px;
 }
+.container {
+  color: white;
+  text-align: center;
+}
+li {
+  display: inline-block;
+  font-size: 0.7rem;
+  list-style-type: none;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 1.5rem;
+}
+
+#content {
+  display: none;
+  padding: 1rem;
+}
+
