@@ -10474,6 +10474,11 @@ li span {
   color: #66DC71;
 }
 
-#countdown-font{
-  font-family: ;
+@font-face{
+  font-family:'digital-clock-font';
+  src: url(../fonts/DIGITALDREAM.ttf);
+ }
+
+#days{
+  font-family: "digital-clock-font";
 }
