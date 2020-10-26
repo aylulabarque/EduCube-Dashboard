@@ -171,6 +171,7 @@ a:hover {
 a:not([href]) {
   color: inherit;
   text-decoration: none;
+  font-size: 25px;
 }
 a:not([href]):hover {
   color: inherit;
@@ -10404,7 +10405,7 @@ body {
 }
 li {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   list-style-type: none;
   text-transform: uppercase;
 }
@@ -10419,3 +10420,60 @@ li span {
   padding: 1rem;
 }
 
+#timedate {
+  font: small-caps lighter 35px/140% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-align:center;
+  align-content: center;
+}
+.timeline {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.li {
+  transition: all 200ms ease-in;
+}
+
+.status {
+  padding: 0px 8px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #D6DCE0;
+  position: relative;
+  transition: all 200ms ease-in;
+}
+.status h4 {
+  font-weight:  ;
+  font-size: 12px;
+}
+.status:before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: -4px;
+  left: 42%;
+  transition: all 200ms ease-in;
+}
+
+.li.complete .status {
+  border-top: 2px solid #66DC71;
+}
+.li.complete .status:before {
+  background-color: #66DC71;
+  border: none;
+  transition: all 200ms ease-in;
+}
+.li.complete .status h4 {
+  color: #66DC71;
+}
+
+#countdown-font{
+  font-family: ;
+}

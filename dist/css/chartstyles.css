@@ -10419,3 +10419,11 @@ li span {
   padding: 1rem;
 }
 
+#timedate {
+    font: small-caps lighter 35px/140% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    text-align:center;
+    align-content: center;
+  }
+  #logo-navbar{
+    margin-left: 1rem;
+  }  
