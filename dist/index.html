@@ -148,11 +148,11 @@
                           <!--Uptime Card-->
                             <div class="col-xl-2 col-md-6">
                                 <div class="card text-white mb-4">
-                                    <div class="card-header">Uptime</div>
+                                    <div class="card-header">Satellite Uptime</div>
                                     <div class="card-bodyd d-flex align-items-center justify-content-between">
                                       <body onLoad="initClock()">
                                         <div id="timedate">
-                                          <a id="h">12</a> :
+                                          <a id="h">00</a> :
                                           <a id="m">00</a>:
                                           <a id="s">00</a>
                                         </div>
@@ -163,7 +163,7 @@
                             <!--Countdown Card-->
                             <div class="col-xl-3 col-md-6">
                               <div class="card height-100 text-white mb-4">
-                                  <div class="card-header">Countdown</div>
+                                  <div class="card-header">Mission Countdown</div>
                                   <div class="card-bodyd d-flex align-items-center justify-content-between">
                                     <div class="container">
                                       
@@ -202,27 +202,27 @@
                           <!--Timeline Card-->
                           <div class="col-xl-4 col-md-6">
                             <div class="card text-white mb-4">
-                              <div class="card-header">Countdown</div>
+                              <div class="card-header">Launch Timeline</div>
                                   <div class="card-bodyd d-flex align-items-center justify-content-between">
                                       <ul class="timeline" id="timeline">
                                         <li class="li complete">
                                           <div class="status">
-                                            <h4> Shift Created </h4>
+                                            <h4> Rocket Startup </h4>
                                           </div>
                                         </li>
                                         <li class="li complete">
                                           <div class="status">
-                                            <h4> Email Sent </h4>
+                                            <h4> Rocket Liftoff </h4>
                                           </div>
                                         </li>
                                         <li class="li complete">
                                           <div class="status">
-                                            <h4> SIC Approval </h4>
+                                            <h4> Rocket Landing </h4>
                                           </div>
                                         </li>
                                         <li class="li">
                                           <div class="status">
-                                            <h4> Shift Completed </h4>
+                                            <h4> Rocket Deploy </h4>
                                           </div>
                                         </li>
                                       </ul>
@@ -248,7 +248,7 @@
                             <div class="col-xl-5">
                               <div class="card mb-4">
                                 <div class="card-header">
-                                  Signal Quality
+                                  Received Signal Strength
                               </div>
                               <div class="card-bodys"><canvas id="myAreaChart" width="400px" height="250px"></canvas></div>
                             </div>
@@ -260,15 +260,19 @@
                                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                           <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
                                         </svg>
-                                        Satellite Location
+                                        Satellite Trajectory / Location
                                    
                                   </div>
                                   <div class="card-body"><div id="googleMap" style="width:100%;height:310px;"></div></canvas></div>
                                   <script>
                                       function myMap() {
                                       var mapProp= {
-                                        center:new google.maps.LatLng(51.508742,-0.120850),
-                                        zoom:5,
+                                        center:new google.maps.LatLng(35.022685,-2.709475),
+                                        zoom:1,
+                                        mapTypeId: google.maps.MapTypeId.SATELLITE,
+                                        streetViewControl: false,
+                                        mapTypeControl: false
+
                                       };
                                       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
                                       }
