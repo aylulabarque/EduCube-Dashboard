@@ -17,6 +17,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+       
+
         <!--Este script pertenece a los gauge-->
         <script type="text/javascript">
          google.charts.load('current', {'packages':['gauge']});
@@ -131,13 +133,96 @@
               chart.draw(data, options);
             }, 26000);
           }
-        </script>                                      
+        </script>     
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['gauge']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['X', 80],
+              ['Y', 55],
+             
+            ]);
+    
+            var options = {
+              width: 460, height: 160,
+              redFrom: 90, redTo: 100,
+              yellowFrom:75, yellowTo: 90,
+              minorTicks: 5
+            };
+    
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
+    
+            chart.draw(data, options);
+    
+            setInterval(function() {
+              data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+              chart.draw(data, options);
+            }, 13000);
+            setInterval(function() {
+              data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+              chart.draw(data, options);
+            }, 5000);
+            setInterval(function() {
+              data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+              chart.draw(data, options);
+            }, 26000);
+          }
+        </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['gauge']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['X', 80],
+              ['Y', 55],
+             
+            ]);
+    
+            var options = {
+              width: 460, height: 160,
+              redFrom: 90, redTo: 100,
+              yellowFrom:75, yellowTo: 90,
+              
+            };
+    
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div5'));
+    
+            chart.draw(data, options);
+    
+            setInterval(function() {
+              data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+              chart.draw(data, options);
+            }, 13000);
+            setInterval(function() {
+              data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+              chart.draw(data, options);
+            }, 5000);
+            setInterval(function() {
+              data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+              chart.draw(data, options);
+            }, 26000);
+          }
+        </script>                                                    
     </head>
 
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">EduQube Dashboard</a>
+      
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href='charts.html'>Charts</a>
+        </li>
+      </ul>
         </nav>
+
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
                 <main>
@@ -150,12 +235,16 @@
                                 <div class="card text-white mb-4">
                                     <div class="card-header">Satellite Uptime</div>
                                     <div class="card-bodyd d-flex align-items-center justify-content-between">
-                                      <body onLoad="initClock()">
-                                        <div id="timedate">
-                                          <a id="h">00</a> :
-                                          <a id="m">00</a>:
-                                          <a id="s">00</a>
-                                        </div>
+                                      <div class="container-uptime">
+                                      
+                                        <ul>
+                                          <li><span id="h">00</span>Days</li>
+                                          <li><span id="m">00</span>Hours</li>
+                                          <li><span id="s">00</span>Minutes</li>
+                                          
+                                        </ul>
+                                                                         
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +256,7 @@
                                   <div class="card-bodyd d-flex align-items-center justify-content-between">
                                     <div class="container">
                                       
-                                        <ul id="countdown-font">
+                                        <ul>
                                           <li><span id="days"></span>Days</li>
                                           <li><span id="hours"></span>Hours</li>
                                           <li><span id="minutes"></span>Minutes</li>
@@ -250,7 +339,14 @@
                                 <div class="card-header">
                                   Received Signal Strength
                               </div>
-                              <div class="card-bodys"><canvas id="myAreaChart" width="400px" height="250px"></canvas></div>
+                              <div class="card-bodys">
+                                <div class="row">
+                                <div id="chart_div4" style="width: 500px; margin-left: 100px;"></div>
+                              </div>
+                              <div class="row">
+                                <div id="chart_div5" style="width: 500px; margin-left: 100px; "></div>
+                              </div>
+                              </div>
                             </div>
                             </div>
                             <!--Satellite Location Card-->
@@ -293,35 +389,10 @@
                         </div>
                         
                         <div class="row">
-                          <!--Gauge-->
-                            <div class="col-xl-4">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <a href="charts.html">Temperature / Pressure / Humdity</a>
-                                    </div>
-                                    <div class="card-body"><div id="chart_div" style="width: 400px; height: 100px;"></div></div>
-                                </div>
-                            </div>
+                          
                             
-                            <!--Gauge-->
-                            <div class="col-xl-4">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                      <a href="charts.html">Accelerometer Axes</a>
-                                    </div>
-                                    <div class="card-body"><div id="chart_div2" style="width: 400px; height: 100px;"></div></div>
-                                </div>
-                            </div>
-                           <!--Gauge-->
-                                <div class="col-xl-4">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                          <a href="charts.html">Magnetometer Axes</a>
-                                        </div>
-                                        <div class="card-body"><div id="chart_div3" style="width: 400px; height: 100px;"></div></div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                           
                             
                         </div>
                         

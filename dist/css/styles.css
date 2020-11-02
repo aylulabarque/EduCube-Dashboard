@@ -10399,7 +10399,13 @@ body {
 .container {
   color: white;
   text-align: center;
-  font-size: 70px;
+  font-size: 60px;
+}
+.container-uptime {
+  color: white;
+  text-align: center;
+  font-size: 60px;
+  
 }
 li {
   display: inline-block;
@@ -10422,6 +10428,8 @@ li span {
   font: small-caps lighter 35px/140% "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
   text-align:center;
   align-content: center;
+  word-spacing: 6px;
+  font-size: 15px;
 }
 .timeline {
   list-style-type: none;
@@ -10487,13 +10495,21 @@ li span {
   font-family: "digital-clock-font";
   color: #FF0000;
 }
-
 #minutes{
   font-family: "digital-clock-font";
   color: #FF0000;
 }
-
 #seconds{
   font-family: "digital-clock-font";
   color: #FF0000;
 }
+#h{
+  font-family: "digital-clock-font";
+}
+#m{
+  font-family: "digital-clock-font";
+}
+#s{
+  font-family: "digital-clock-font";
+}
+
