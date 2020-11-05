@@ -175,7 +175,7 @@
            ]);
    
            var options = {
-             width: 400, height: 120,
+             width: 420, height: 120,
              redFrom: 0, redTo: 0,
              yellowFrom:0, yellowTo: 0,
              min:-100, max:100,
@@ -220,7 +220,7 @@
             ]);
     
             var options = {
-              width: 400, height: 120,
+              width: 420, height: 120,
               redFrom: 0, redTo: 0,
               yellowFrom:0, yellowTo: 0,
               min:-16, max:16,
@@ -265,7 +265,7 @@
             ]);
     
             var options = {
-              width: 400, height: 120,
+              width: 420, height: 120,
               redFrom: 0, redTo: 0,
               yellowFrom:0, yellowTo: 0,
               min:-100, max:100,
@@ -303,8 +303,7 @@
     
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
-              ['Temperature', 0],
-              ['Humidity', 0],
+              ['Humidity', 0]
              
             ]);
     
@@ -320,10 +319,6 @@
             chart.draw(data, options);
     
             setInterval(function() {
-              data.setValue(0, 1, temperature);
-              chart.draw(data, options);
-            }, 2000);
-            setInterval(function() {
               data.setValue(1, 1, humidity);
               chart.draw(data, options);
             }, 2000);
@@ -337,8 +332,37 @@
     
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
+              ['Temperature', 0]
+             
+            ]);
+    
+            var options = {
+              width: 460, height: 160,
+              redFrom: 0, redTo: 0,
+              yellowFrom:0, yellowTo: 0,
+              minorTicks: 5
+            };
+    
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div6'));
+    
+            chart.draw(data, options);
+    
+            setInterval(function() {
+              data.setValue(0, 1, temperature);
+              chart.draw(data, options);
+            }, 2000);
+          }
+        </script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['gauge']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
               ['Pressure', 0],
-              ['RSSI', 0],
+              
              
             ]);
 
@@ -364,12 +388,45 @@
               formatter.format(data, 1);
               chart.draw(data, options);
             }, 2000);
+          }
+        </script> 
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['gauge']});
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+    
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              
+              ['RSSI', 0],
+             
+            ]);
+
+            var options = {
+              width: 460, height: 160,
+              redFrom: -140, redTo: -130,
+              yellowFrom:-130, yellowTo: -120,
+              greenFrom:-120, greenTo:0,
+              min:-140,max:0
+            };
+
+            var formatter = new google.visualization.NumberFormat({
+              suffix: ' dB',
+              fractionDigits: 0
+            });
+    
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div7'));
+    
+            chart.draw(data, options);
+    
+           
             setInterval(function() {
               data.setValue(1, 1, rssi);
               chart.draw(data, options);
             }, 2000);
           }
-        </script>                                                    
+        </script>                                                                          
     </head>
 
     <body class="sb-nav-fixed">
@@ -501,10 +558,12 @@
                               </div>
                               <div class="card-bodys">
                                 <div class="row">
-                                <div id="chart_div4" style="width: 500px; margin-left: 100px;"></div>
+                                <div id="chart_div4" style="margin-left: 70px;"></div>
+                                <div id="chart_div6" style="margin-left: 60px ; "></div>
                               </div>
                               <div class="row">
-                                <div id="chart_div5" style="width: 500px; margin-left: 100px; "></div>
+                                <div id="chart_div5" style="margin-left: 70px; "></div>
+                                <div id="chart_div7" style="margin-left: 60px; "></div>
                               </div>
                               </div>
                             </div>
@@ -556,7 +615,7 @@
                                         Gyroscope Axes
                                     </div>
                                     <div class="card-body">
-                                      <div id="chart_div" style="width: 400px; height: 100px;"></div>
+                                      <div id="chart_div" style="width: 450px; height: 110px; margin-left: 15px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -568,7 +627,7 @@
                                       Accelerometer Axes
                                     </div>
                                     <div class="card-body">
-                                      <div id="chart_div2" style="width: 400px; height: 100px;"></div>
+                                      <div id="chart_div2" style="width: 450px; height: 110px; margin-left: 15px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -578,7 +637,7 @@
                                         <div class="card-header">
                                           Magnetometer Axes
                                         </div>
-                                        <div class="card-body"><div id="chart_div3" style="width: 400px; height: 100px;"></div></div>
+                                        <div class="card-body"><div id="chart_div3" style="width: 450px; height: 110px; margin-left: 15px;"></div></div>
                                     </div>
                                 </div>
                             </div>
