@@ -38,8 +38,8 @@
          var pressure = "0";
          var temperature = "0";
          var altitude = "0";
-         var gps_lat = "0";
-         var gps_long = "0";
+         var gps_lat = "-38";
+         var gps_long = "-57";
          var rssi = "0";
      
          function onFailure(message) {
@@ -313,13 +313,19 @@
               yellowFrom:0, yellowTo: 0,
               minorTicks: 5
             };
+
+            var formatter = new google.visualization.NumberFormat({
+              suffix: ' %',
+              fractionDigits: 0
+            });
     
             var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
     
             chart.draw(data, options);
     
             setInterval(function() {
-              data.setValue(1, 1, humidity);
+              data.setValue(0, 1, humidity);
+              formatter.format(data, 1);
               chart.draw(data, options);
             }, 2000);
           }
@@ -333,15 +339,20 @@
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Temperature', 0]
-             
             ]);
     
             var options = {
               width: 460, height: 160,
               redFrom: 0, redTo: 0,
               yellowFrom:0, yellowTo: 0,
+              min:-50, max:50,
               minorTicks: 5
             };
+
+            var formatter = new google.visualization.NumberFormat({
+              suffix: ' ºC',
+              fractionDigits: 0
+            });
     
             var chart = new google.visualization.Gauge(document.getElementById('chart_div6'));
     
@@ -349,6 +360,7 @@
     
             setInterval(function() {
               data.setValue(0, 1, temperature);
+              formatter.format(data, 1);
               chart.draw(data, options);
             }, 2000);
           }
@@ -362,20 +374,15 @@
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Pressure', 0],
-              
-             
             ]);
 
             var options = {
               width: 460, height: 160,
-              redFrom: -140, redTo: -130,
-              yellowFrom:-130, yellowTo: -120,
-              greenFrom:-120, greenTo:0,
-              min:-140,max:0
+              min:0,max:1000
             };
 
             var formatter = new google.visualization.NumberFormat({
-              suffix: ' dB',
+              suffix: ' hPa',
               fractionDigits: 0
             });
     
@@ -398,16 +405,14 @@
     
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
-              
               ['RSSI', 0],
-             
             ]);
 
             var options = {
               width: 460, height: 160,
               redFrom: -140, redTo: -130,
               yellowFrom:-130, yellowTo: -120,
-              greenFrom:-120, greenTo:0,
+              greenFrom:-120, greenTo:40,
               min:-140,max:0
             };
 
@@ -422,7 +427,8 @@
     
            
             setInterval(function() {
-              data.setValue(1, 1, rssi);
+              formatter.format(data, 1);
+              data.setValue(0, 1, rssi);
               chart.draw(data, options);
             }, 2000);
           }
@@ -513,22 +519,22 @@
                                       <ul class="timeline" id="timeline">
                                         <li class="li complete">
                                           <div class="status">
-                                            <h4> Rocket Startup </h4>
+                                            <h4> Engine Startup </h4>
                                           </div>
                                         </li>
-                                        <li class="li complete">
+                                        <li class="li">
                                           <div class="status">
                                             <h4> Rocket Liftoff </h4>
                                           </div>
                                         </li>
-                                        <li class="li complete">
+                                        <li class="li">
                                           <div class="status">
                                             <h4> Rocket Landing </h4>
                                           </div>
                                         </li>
                                         <li class="li">
                                           <div class="status">
-                                            <h4> Rocket Deploy </h4>
+                                            <h4> Satellite Deploy </h4>
                                           </div>
                                         </li>
                                       </ul>
@@ -583,13 +589,26 @@
                                       function myMap() {
                                       var mapProp= {
                                         center:new google.maps.LatLng(35.022685,-2.709475),
-                                        zoom:1,
+                                        zoom:0.9,
                                         mapTypeId: google.maps.MapTypeId.SATELLITE,
                                         streetViewControl: false,
-                                        mapTypeControl: false
-
+                                        mapTypeControl: false,
+                                        zoomControl: false,
+                                        fullscreenControl: false,
                                       };
+
+                                      const satelite_img = "https://icons.iconarchive.com/icons/google/noto-emoji-travel-places/24/42597-satellite-icon.png";
                                       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                      const marker = new google.maps.Marker({
+                                      position: { lat: gps_lat, lng: gps_long },
+                                      map: map,
+                                      icon: satelite_img
+
+                                    });
+                                    setInterval(function() {
+                                        position = new google.maps.LatLng(gps_lat, gps_long);
+                                        marker.setPosition(position);
+                                    }, 2000);
                                       }
                                       </script>
                                       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsPUm81zS1eOrIrYqeqN9mE00HzgVjcEo&callback=myMap"></script>    
