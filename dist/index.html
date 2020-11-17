@@ -38,10 +38,9 @@
          var pressure = "0";
          var temperature = "0";
          var altitude = "0";
-         var gps_lat = "-38";
-         var gps_long = "-57";
+         var gps_lat = "0";
+         var gps_long = "0";
          var rssi = "0";
-         let launchdate;
      
          function onFailure(message) {
            console.log("Connection Attempt to Host "+host+"Failed");
@@ -120,14 +119,10 @@
            {
             rssi = msg.payloadString;
            }
-           else if(msg.destinationName == "launchdate")
-           {
-            launchdate = msg.payloadString;
-           }
          }
      
           function onConnect() {
-            // Once a connection has been made, make a subscription
+            // Once a connection has been made, make a subscription and send a message.
             console.log("Connected ");
             mqtt.subscribe("gyro_x");
             mqtt.subscribe("gyro_y");
@@ -145,13 +140,12 @@
             mqtt.subscribe("gps_lat");
             mqtt.subscribe("gps_long");
             mqtt.subscribe("rssi");
-            mqtt.subscribe("launchdate");
           }
 
          function MQTTconnect() {
          console.log("connecting to "+ host +" "+ port);
          mqtt = new Paho.MQTT.Client(host,port,"clientjs");
-
+         //document.write("connecting to "+ host);
          var options = {
            timeout: 3,
            onSuccess: onConnect,
@@ -159,7 +153,7 @@
             };
          mqtt.onMessageArrived = onMessageArrived
          
-         mqtt.connect(options);
+         mqtt.connect(options); //connect
          }
         </script>
 
@@ -319,19 +313,13 @@
               yellowFrom:0, yellowTo: 0,
               minorTicks: 5
             };
-
-            var formatter = new google.visualization.NumberFormat({
-              suffix: ' %',
-              fractionDigits: 0
-            });
     
             var chart = new google.visualization.Gauge(document.getElementById('chart_div4'));
     
             chart.draw(data, options);
     
             setInterval(function() {
-              data.setValue(0, 1, humidity);
-              formatter.format(data, 1);
+              data.setValue(1, 1, humidity);
               chart.draw(data, options);
             }, 2000);
           }
@@ -345,20 +333,15 @@
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Temperature', 0]
+             
             ]);
     
             var options = {
               width: 460, height: 160,
               redFrom: 0, redTo: 0,
               yellowFrom:0, yellowTo: 0,
-              min:-50, max:50,
               minorTicks: 5
             };
-
-            var formatter = new google.visualization.NumberFormat({
-              suffix: ' ºC',
-              fractionDigits: 0
-            });
     
             var chart = new google.visualization.Gauge(document.getElementById('chart_div6'));
     
@@ -366,7 +349,6 @@
     
             setInterval(function() {
               data.setValue(0, 1, temperature);
-              formatter.format(data, 1);
               chart.draw(data, options);
             }, 2000);
           }
@@ -380,15 +362,20 @@
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
               ['Pressure', 0],
+              
+             
             ]);
 
             var options = {
               width: 460, height: 160,
-              min:0,max:1000
+              redFrom: -140, redTo: -130,
+              yellowFrom:-130, yellowTo: -120,
+              greenFrom:-120, greenTo:0,
+              min:-140,max:0
             };
 
             var formatter = new google.visualization.NumberFormat({
-              suffix: ' hPa',
+              suffix: ' dB',
               fractionDigits: 0
             });
     
@@ -411,14 +398,16 @@
     
             var data = google.visualization.arrayToDataTable([
               ['Label', 'Value'],
+              
               ['RSSI', 0],
+             
             ]);
 
             var options = {
               width: 460, height: 160,
               redFrom: -140, redTo: -130,
               yellowFrom:-130, yellowTo: -120,
-              greenFrom:-120, greenTo:40,
+              greenFrom:-120, greenTo:0,
               min:-140,max:0
             };
 
@@ -433,8 +422,7 @@
     
            
             setInterval(function() {
-              formatter.format(data, 1);
-              data.setValue(0, 1, rssi);
+              data.setValue(1, 1, rssi);
               chart.draw(data, options);
             }, 2000);
           }
@@ -498,19 +486,18 @@
                                             minute = second * 60,
                                             hour = minute * 60,
                                             day = hour * 24;
-                                          previouslaunchdate = launchdate;
+                                    
+                                      let birthday = "Sep 30, 2021 00:00:00",
+                                          countDown = new Date(birthday).getTime(),
                                           x = setInterval(function() {    
-                                            if(previouslaunchdate != launchdate)
-                                            {
-                                              countDown = new Date(launchdate).getTime();
-                                              let now = new Date().getTime(),
-                                              distance = countDown - now;
-                                              
-                                              document.getElementById("days").innerText = Math.floor(distance / (day)),
+                                    
+                                            let now = new Date().getTime(),
+                                                distance = countDown - now;
+                                    
+                                            document.getElementById("days").innerText = Math.floor(distance / (day)),
                                               document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
                                               document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-                                              document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);        
-                                            }                                                           
+                                              document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);                                                                     
                                             //seconds
                                           }, 0)
                                       }());</script>                                      
@@ -526,22 +513,22 @@
                                       <ul class="timeline" id="timeline">
                                         <li class="li complete">
                                           <div class="status">
-                                            <h4> Engine Startup </h4>
+                                            <h4> Rocket Startup </h4>
                                           </div>
                                         </li>
-                                        <li class="li">
+                                        <li class="li complete">
                                           <div class="status">
                                             <h4> Rocket Liftoff </h4>
                                           </div>
                                         </li>
-                                        <li class="li">
+                                        <li class="li complete">
                                           <div class="status">
                                             <h4> Rocket Landing </h4>
                                           </div>
                                         </li>
                                         <li class="li">
                                           <div class="status">
-                                            <h4> Satellite Deploy </h4>
+                                            <h4> Rocket Deploy </h4>
                                           </div>
                                         </li>
                                       </ul>
@@ -596,26 +583,13 @@
                                       function myMap() {
                                       var mapProp= {
                                         center:new google.maps.LatLng(35.022685,-2.709475),
-                                        zoom:0.9,
+                                        zoom:1,
                                         mapTypeId: google.maps.MapTypeId.SATELLITE,
                                         streetViewControl: false,
-                                        mapTypeControl: false,
-                                        zoomControl: false,
-                                        fullscreenControl: false,
+                                        mapTypeControl: false
+
                                       };
-
-                                      const satelite_img = "https://icons.iconarchive.com/icons/google/noto-emoji-travel-places/24/42597-satellite-icon.png";
                                       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                                      const marker = new google.maps.Marker({
-                                      position: { lat: gps_lat, lng: gps_long },
-                                      map: map,
-                                      icon: satelite_img
-
-                                    });
-                                    setInterval(function() {
-                                        position = new google.maps.LatLng(gps_lat, gps_long);
-                                        marker.setPosition(position);
-                                    }, 2000);
                                       }
                                       </script>
                                       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsPUm81zS1eOrIrYqeqN9mE00HzgVjcEo&callback=myMap"></script>    
@@ -667,6 +641,73 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-3">
+                              <div class="card mb-4">
+                                  <div class="card-header">
+                                    Accelerometer Axes
+                                  </div>
+                                  <div class="card-body">
+                                    <script src="https://d3js.org/d3.v4.min.js"></script>
+                                    <div id="chart" style="margin-left: 40px;"></div>
+                                    <script>
+                                      var percent = .4; // 0.0 to 1.0
+                                      var text = (percent * 100) + "%";
+
+                                      var width = 200;
+                                      var height = 200;
+                                      var thickness = 30;
+                                      var duration = 750;
+                                      var foregroundColor = "#0a8";
+                                      var backgroundColor = "#ccc";
+
+                                      var radius = Math.min(width, height) / 2;
+                                      var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
+
+                                      var svg = d3.select("#chart")
+                                      .append('svg')
+                                      .attr('class', 'pie')
+                                      .attr('width', width)
+                                      .attr('height', height);
+
+                                      var g = svg.append('g')
+                                      .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+                                      var arc = d3.arc()
+                                      .innerRadius(radius - thickness)
+                                      .outerRadius(radius);
+
+                                      var pie = d3.pie()
+                                      .sort(null);
+
+                                      var path = g.selectAll('path')
+                                      .data(pie([0, 1]))
+                                      .enter()
+                                      .append('path')
+                                      .attr('d', arc)
+                                      .attr('fill', function(d, i) {
+                                        return color(i);
+                                      })
+                                      .each(function(d) { this._current = d; });
+
+
+                                      path.data(pie([percent, 1-percent])).transition()
+                                        .duration(duration)
+                                        .attrTween('d', function(d) {
+                                        var interpolate = d3.interpolate(this._current, d);
+                                        this._current = interpolate(0);
+                                        return function(t) {
+                                          return arc(interpolate(t));
+                                        }
+                                      });
+
+                                      g.append('text')
+                                        .attr('text-anchor', 'middle')
+                                        .attr('dy', '.35em')
+                                        .text(text);
+                                    </script>
+                                  </div>
+                              </div>
+                          </div>
                             
                         </div>
                         

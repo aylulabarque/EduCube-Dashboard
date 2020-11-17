@@ -562,7 +562,7 @@ pre code {
   }
 }
 
-}
+
 
 .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
   width: 100%;
@@ -10511,5 +10511,11 @@ li span {
 }
 #s{
   font-family: "digital-clock-font";
+}
+
+.pie text{
+  font-size: 40px;
+  font-family: "Verdana";
+  fill: white;
 }
 
