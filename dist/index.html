@@ -330,7 +330,7 @@
             chart.draw(data, options);
     
             setInterval(function() {
-              data.setValue(0, 1, humidity);
+              data.setValue(0, 1, 0);
               formatter.format(data, 1);
               chart.draw(data, options);
             }, 2000);
@@ -457,6 +457,7 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4"></h1>
+
                         <div class="row">
 
                           <!--Uptime Card-->
@@ -561,35 +562,329 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
 
-                          <!--General data Chart-->
-                            <div class="col-xl-5">
-                              <div class="card mb-4">
-                                <div class="card-header">
-                                  General Payload Data
+                        <div class="row">
+                          <div class="col-xl-4">
+                            <div class="row">                                          
+                              <div class="col-xl-6">
+                                  <div class="card mb-4">
+                                      <div class="card-header">
+                                      Humidity
+                                      </div>
+                                      <div class="card-body">
+                                        <script src="https://d3js.org/d3.v4.min.js"></script>
+                                        <div id="chart" style="margin-left: 15px;"></div>
+                                        <script>
+                                          
+                                          var percent = humidity; // 0.0 to 1.0
+                                          var text = (percent * 100) + "%";
+
+                                          var width = 140;
+                                          var height = 100;
+                                          var thickness = 20;
+                                          var duration = 750;
+                                          var foregroundColor = "#0a8";
+                                          var backgroundColor = "#ccc";
+
+                                          var radius = Math.min(width, height) / 2;
+                                          var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
+
+                                          var svg = d3.select("#chart")
+                                          .append('svg')
+                                          .attr('class', 'pie')
+                                          .attr('width', width)
+                                          .attr('height', height);
+
+                                          var g = svg.append('g')
+                                          .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+                                          var arc = d3.arc()
+                                          .innerRadius(radius - thickness)
+                                          .outerRadius(radius);
+
+                                          var pie = d3.pie()
+                                          .sort(null);
+
+                                          var path = g.selectAll('path')
+                                          .data(pie([0, 1]))
+                                          .enter()
+                                          .append('path')
+                                          .attr('d', arc)
+                                          .attr('fill', function(d, i) {
+                                            return color(i);
+                                          })
+                                          .each(function(d) { this._current = d; });
+
+
+                                          path.data(pie([percent, 1-percent])).transition()
+                                            .duration(duration)
+                                            .attrTween('d', function(d) {
+                                            var interpolate = d3.interpolate(this._current, d);
+                                            this._current = interpolate(0);
+                                            return function(t) {
+                                              return arc(interpolate(t));
+                                            }
+                                          });
+                                          setInterval(function() {
+                                            g.append('text')
+                                            .attr('text-anchor', 'middle')
+                                            .attr('dy', '.35em')
+                                            .text(text);
+                                          
+                                        }, 2000);
+
+                                          g.append('text')
+                                            .attr('text-anchor', 'middle')
+                                            .attr('dy', '.35em')
+                                            .text(text);
+                                        </script>
+                                      </div>
+                                  </div>
                               </div>
-                              <div class="card-bodys">
-                                <div class="row">
-                                <div id="chart_div4" style="margin-left: 70px;"></div>
-                                <div id="chart_div6" style="margin-left: 60px ; "></div>
+
+                              <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                    Temperature
+                                    </div>
+                                    <div class="card-body">
+                                      <script src="https://d3js.org/d3.v4.min.js"></script>
+                                      <div id="chart2" style="margin-left: 15px;"></div>
+                                      <script>
+                                        
+                                        var percent = temperature; // 0.0 to 1.0
+                                        var text = (percent * 100) + "ºC";
+
+                                        var width = 140;
+                                        var height = 100;
+                                        var thickness = 20;
+                                        var duration = 750;
+                                        var foregroundColor = "#0a8";
+                                        var backgroundColor = "#ccc";
+
+                                        var radius = Math.min(width, height) / 2;
+                                        var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
+
+                                        var svg = d3.select("#chart2")
+                                        .append('svg')
+                                        .attr('class', 'pie')
+                                        .attr('width', width)
+                                        .attr('height', height);
+
+                                        var g = svg.append('g')
+                                        .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+                                        var arc = d3.arc()
+                                        .innerRadius(radius - thickness)
+                                        .outerRadius(radius);
+
+                                        var pie = d3.pie()
+                                        .sort(null);
+
+                                        var path = g.selectAll('path')
+                                        .data(pie([0, 1]))
+                                        .enter()
+                                        .append('path')
+                                        .attr('d', arc)
+                                        .attr('fill', function(d, i) {
+                                          return color(i);
+                                        })
+                                        .each(function(d) { this._current = d; });
+
+
+                                        path.data(pie([percent, 1-percent])).transition()
+                                          .duration(duration)
+                                          .attrTween('d', function(d) {
+                                          var interpolate = d3.interpolate(this._current, d);
+                                          this._current = interpolate(0);
+                                          return function(t) {
+                                            return arc(interpolate(t));
+                                          }
+                                        });
+                                        setInterval(function() {
+                                          g.append('text')
+                                          .attr('text-anchor', 'middle')
+                                          .attr('dy', '.35em')
+                                          .text(text);
+                                        
+                                      }, 2000);
+
+                                        g.append('text')
+                                          .attr('text-anchor', 'middle')
+                                          .attr('dy', '.35em')
+                                          .text(text);
+                                      </script>
+                                    </div>
+                                </div>
+                                </div>
                               </div>
-                              <div class="row">
-                                <div id="chart_div5" style="margin-left: 70px; "></div>
-                                <div id="chart_div7" style="margin-left: 60px; "></div>
+                                <div class="row"> 
+                                      <div class="col-xl-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                            Pressure
+                                            </div>
+                                            <div class="card-body">
+                                              <script src="https://d3js.org/d3.v4.min.js"></script>
+                                              <div id="chart3" style="margin-left: 15px;"></div>
+                                              <script>
+                                                
+                                                var percent = pressure; // 0.0 to 1.0
+                                                var text = (percent * 100) + "hPA";
+
+                                                var width = 140;
+                                                var height = 100;
+                                                var thickness = 20;
+                                                var duration = 750;
+                                                var foregroundColor = "#0a8";
+                                                var backgroundColor = "#ccc";
+
+                                                var radius = Math.min(width, height) / 2;
+                                                var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
+
+                                                var svg = d3.select("#chart3")
+                                                .append('svg')
+                                                .attr('class', 'pie')
+                                                .attr('width', width)
+                                                .attr('height', height);
+
+                                                var g = svg.append('g')
+                                                .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+                                                var arc = d3.arc()
+                                                .innerRadius(radius - thickness)
+                                                .outerRadius(radius);
+
+                                                var pie = d3.pie()
+                                                .sort(null);
+
+                                                var path = g.selectAll('path')
+                                                .data(pie([0, 1]))
+                                                .enter()
+                                                .append('path')
+                                                .attr('d', arc)
+                                                .attr('fill', function(d, i) {
+                                                  return color(i);
+                                                })
+                                                .each(function(d) { this._current = d; });
+
+
+                                                path.data(pie([percent, 1-percent])).transition()
+                                                  .duration(duration)
+                                                  .attrTween('d', function(d) {
+                                                  var interpolate = d3.interpolate(this._current, d);
+                                                  this._current = interpolate(0);
+                                                  return function(t) {
+                                                    return arc(interpolate(t));
+                                                  }
+                                                });
+                                                setInterval(function() {
+                                                  g.append('text')
+                                                  .attr('text-anchor', 'middle')
+                                                  .attr('dy', '.35em')
+                                                  .text(text);
+                                                
+                                              }, 2000);
+
+                                                g.append('text')
+                                                  .attr('text-anchor', 'middle')
+                                                  .attr('dy', '.35em')
+                                                  .text(text);
+                                              </script>
+                                            </div>
+                                        </div>
+                                        </div>
+                                  
+                                        <div class="col-xl-6">
+                                          <div class="card mb-4">
+                                              <div class="card-header">
+                                              RSSI
+                                              </div>
+                                              <div class="card-body">
+                                                <script src="https://d3js.org/d3.v4.min.js"></script>
+                                                <div id="chart4" style="margin-left: 15px;"></div>
+                                                <script>
+                                                  
+                                                  var percent = rssi; // 0.0 to 1.0
+                                                  var text = (percent * 100) + "dB";
+
+                                                  var width = 140;
+                                                  var height = 100;
+                                                  var thickness = 20;
+                                                  var duration = 750;
+                                                  var foregroundColor = "#0a8";
+                                                  var backgroundColor = "#ccc";
+
+                                                  var radius = Math.min(width, height) / 2;
+                                                  var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
+
+                                                  var svg = d3.select("#chart4")
+                                                  .append('svg')
+                                                  .attr('class', 'pie')
+                                                  .attr('width', width)
+                                                  .attr('height', height);
+
+                                                  var g = svg.append('g')
+                                                  .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
+
+                                                  var arc = d3.arc()
+                                                  .innerRadius(radius - thickness)
+                                                  .outerRadius(radius);
+
+                                                  var pie = d3.pie()
+                                                  .sort(null);
+
+                                                  var path = g.selectAll('path')
+                                                  .data(pie([0, 1]))
+                                                  .enter()
+                                                  .append('path')
+                                                  .attr('d', arc)
+                                                  .attr('fill', function(d, i) {
+                                                    return color(i);
+                                                  })
+                                                  .each(function(d) { this._current = d; });
+
+
+                                                  path.data(pie([percent, 1-percent])).transition()
+                                                    .duration(duration)
+                                                    .attrTween('d', function(d) {
+                                                    var interpolate = d3.interpolate(this._current, d);
+                                                    this._current = interpolate(0);
+                                                    return function(t) {
+                                                      return arc(interpolate(t));
+                                                    }
+                                                  });
+                                                  setInterval(function() {
+                                                    g.append('text')
+                                                    .attr('text-anchor', 'middle')
+                                                    .attr('dy', '.35em')
+                                                    .text(text);
+                                                  
+                                                }, 2000);
+
+                                                  g.append('text')
+                                                    .attr('text-anchor', 'middle')
+                                                    .attr('dy', '.35em')
+                                                    .text(text);
+                                                </script>
+                                              </div>
+                                          </div>
+                                        </div>
                               </div>
-                              </div>
-                            </div>
-                            </div>
+                          </div>
+
+
+                          <div class="col-xl-8">
+                            <div class="row">
                             <!--Satellite Location Card-->
-                            <div class="col-xl-4">
-                              <div class="card mb-4">
+                            <div class="col-xl-8">
+                              <div class="card mb-8">
                                   <div class="card-header">
                                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                           <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
                                         </svg>
                                         Satellite Trajectory / Location
-                                   
+                                  
                                   </div>
                                   <div class="card-body"><div id="googleMap" style="width:100%;height:310px;"></div></canvas></div>
                                   <script>
@@ -620,19 +915,20 @@
                                       </script>
                                       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsPUm81zS1eOrIrYqeqN9mE00HzgVjcEo&callback=myMap"></script>    
                               </div>
+                            </div>
+                            <!--Twitter Card-->
+                            <div class="col-xl-4">
+                                      <div class="card mb-4">
+                                        
+                                        <a class="twitter-timeline" data-width="350" data-height="400" data-theme="dark" href="https://twitter.com/innova_space?ref_src=twsrc%5Etfw">Tweets by innova_space</a> 
+                                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              
+                                    </div>
+                              </div>
+                            </div>
                           </div>
-                          <!--Twitter Card-->
-                            <div class="col-xl-3">
-                              <div class="card mb-4">
-                                
-                                <a class="twitter-timeline" data-width="350" data-height="400" data-theme="dark" href="https://twitter.com/innova_space?ref_src=twsrc%5Etfw">Tweets by innova_space</a> 
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      
-                            </div>
-                            </div>
-                            
                         </div>
-                        
+         
                         <div class="row">
                           <!--Gauge-->
                             <div class="col-xl-4">
@@ -667,73 +963,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3">
-                              <div class="card mb-4">
-                                  <div class="card-header">
-                                    Accelerometer Axes
-                                  </div>
-                                  <div class="card-body">
-                                    <script src="https://d3js.org/d3.v4.min.js"></script>
-                                    <div id="chart" style="margin-left: 40px;"></div>
-                                    <script>
-                                      var percent = humidity; // 0.0 to 1.0
-                                      var text = (percent * 100) + "%";
+                            
+                            
 
-                                      var width = 200;
-                                      var height = 200;
-                                      var thickness = 30;
-                                      var duration = 750;
-                                      var foregroundColor = "#0a8";
-                                      var backgroundColor = "#ccc";
-
-                                      var radius = Math.min(width, height) / 2;
-                                      var color = d3.scaleOrdinal([foregroundColor, backgroundColor]);
-
-                                      var svg = d3.select("#chart")
-                                      .append('svg')
-                                      .attr('class', 'pie')
-                                      .attr('width', width)
-                                      .attr('height', height);
-
-                                      var g = svg.append('g')
-                                      .attr('transform', 'translate(' + (width/2) + ',' + (height/2) + ')');
-
-                                      var arc = d3.arc()
-                                      .innerRadius(radius - thickness)
-                                      .outerRadius(radius);
-
-                                      var pie = d3.pie()
-                                      .sort(null);
-
-                                      var path = g.selectAll('path')
-                                      .data(pie([0, 1]))
-                                      .enter()
-                                      .append('path')
-                                      .attr('d', arc)
-                                      .attr('fill', function(d, i) {
-                                        return color(i);
-                                      })
-                                      .each(function(d) { this._current = d; });
-
-
-                                      path.data(pie([percent, 1-percent])).transition()
-                                        .duration(duration)
-                                        .attrTween('d', function(d) {
-                                        var interpolate = d3.interpolate(this._current, d);
-                                        this._current = interpolate(0);
-                                        return function(t) {
-                                          return arc(interpolate(t));
-                                        }
-                                      });
-
-                                      g.append('text')
-                                        .attr('text-anchor', 'middle')
-                                        .attr('dy', '.35em')
-                                        .text(text);
-                                    </script>
-                                  </div>
-                              </div>
-                          </div>
+                            
                         </div>
                         
                         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css'>
