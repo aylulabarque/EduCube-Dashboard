@@ -13,72 +13,8 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
-        <!--Este script pertenece a los gauge-->
-        <script type="text/javascript">
-        var dato
-            google.charts.load('current', {'packages':['gauge']});
-                                           google.charts.setOnLoadCallback(drawChart);
-                                           function drawChart() {
-                                            const options2 = {
-                                              connectTimeout: 4000,
-                                              clientId: 'Luca',
-                                              keepalive: 60,
-                                              clean: true,
-                                            }
-
-                                            const WebSocket_URL = 'ws://192.168.56.101:8083/mqtt'
-                                            const client = mqtt.connect(WebSocket_URL, options2);
-                                            client.on('connect', () => {
-
-                                              console.log('Mqtt conectado por WS')
-
-                                              client.subscribe('prueba', { qos: 0 }, (error) => {
-                                                if(!error) {
-                                                  console.log('Subscripción exitosa')
-                                                }else{
-                                                  console.log('Subscripción fallida')
-                                                }
-                                              })
-                                            })
-
-                                            client.on('message', (topic, message) => {
-                                              console.log('Mensaje recibido del topic: ', topic, ' -> ', message.toString());
-                                               dato = 5;
-                                            })
-           
-              var data = google.visualization.arrayToDataTable([
-                ['Label', 'Value'],
-                ['Temperature', 5],
-                ['Pressure', 55],
-                ['Humidity', 68]
-              ]);
-      
-              var options = {
-                width: 400, height: 120,
-                redFrom: 90, redTo: 100,
-                yellowFrom:75, yellowTo: 90,
-                minorTicks: 5
-              };
-      
-              var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-      
-              chart.draw(data, options);
-      
-              setInterval(function() {
-                data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-                chart.draw(data, options);
-              }, 13000);
-              setInterval(function() {
-                data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-                chart.draw(data, options);
-              }, 5000);
-              setInterval(function() {
-                data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-                chart.draw(data, options);
-              }, 26000);
-            }
-          </script>                      
-                    
+    
+        
     </head>
 
     <body class="sb-nav-fixed">
