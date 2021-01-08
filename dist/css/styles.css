@@ -4351,6 +4351,8 @@ input[type=button].btn-block {
   border-radius: 0.25rem;
 }
 
+
+
 .cardl {
   position: relative;
   display: flex;
@@ -10556,6 +10558,46 @@ li span {
   font-size: 20px;
 }
 
+@media  screen and (min-width: 1600px) {
+  ul{
+    margin-left: 20px;
+  }
+  .sb-nav-fixed #layoutSidenav #layoutSidenav_content{
+    width: 1900px;
+    
+  }
+  .card-body-logo{
+    margin-left: 5rem;
+  }
+  .gauge-container{
+    margin-left: 60px;
+  }
+  #chart_div{
+    margin-left: 90px;
+  }
+  #chart_div2{
+    margin-left: 90px;
+  }
+  #chart_div3{
+    margin-left: 90px;
+  }
+}
 
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    
+    #chart_div{
+      margin-left: 15px;
+    }
+    #chart_div2{
+      margin-left: 15px;
+    }
+    #chart_div3{
+      margin-left: 15px;
+    }
+    
+  }
 
 

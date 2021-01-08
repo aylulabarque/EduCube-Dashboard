@@ -4398,7 +4398,7 @@ input[type=button].btn-block {
   padding: 1.25rem;
   background-color: #f7f7f7;
   font-size: 30px;
-  height: 350px;
+  height: 300px;
   
 } 
 
@@ -10428,4 +10428,28 @@ li span {
     margin-left: 1rem;
   }  
 
-  
+  @media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    .card-bodys{
+      height: 300px;
+    }
+    #myChart{
+        height: 35px;
+    }
+    #myChart2{
+      height: 35px;
+  }
+  #myChart3{
+    height: 35px;
+}
+#myChart4{
+  height: 35px;
+}#myChart5{
+  height: 35px;
+}
+#myChart6{
+  height: 35px;
+}
+}

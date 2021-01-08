@@ -181,40 +181,41 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4"></h1>
+
                         <div class="row">
                             <!--Signal Quality Chart-->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-3">
                                         <div class="card-header">
                                             Signal Quality
                                         </div>
-                                        <div class="card-bodys"><canvas id="myChart" height="100px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart" height="45px" style="color: white;"></canvas></div>
                                         <script>
                                             
                                             var ctx = document.getElementById('myChart').getContext('2d');
                                                 var chart = new Chart(ctx, {
                                                 type: 'line',
                                                 data: {
+                                                   
                                                     datasets: [{
                                                         label: 'Dataset 1',
                                                         borderColor: 'rgb(255, 99, 132)',
                                                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                                                         lineTension: 0,
                                                         borderDash: [8, 4],
-                                                        data: [humidity]
 
                                                         }, {
-                                                        label: 'Dataset 2',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 01,
-                                                        borderDash: [8, 4],
-                                                        data: [temperature]
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
                                                         }
                                                         
                                                     ]
 
                                                 },
+                                                
                                                 options: {
                                                     scales: {
                                                     xAxes: [{
@@ -223,13 +224,13 @@
                                                             duration: 60000,
 							                                refresh: 5000,
                                                            delay: 5000,
-                                                            onRefresh: function(chart) {
-                                                            
+
+                                                            onRefresh: function(chart) { 
                                                             chart.data.datasets.forEach(function(dataset) {
                                                             dataset.data.push({
                                                                 
                                                                 x: Date.now(),
-                                                                y: humidity, temperature                                            
+                                                                y: humidity                                        
                                                             });
                                                             });
                                                             
@@ -244,53 +245,323 @@
                                         </script>
                                 </div>
                             </div>
-                            <!--Temperature Chart-->
-                            <div class="col-xl-6">
+                        </div>
+                        
+                         <div class="row">    
+                           <!--Temperature Chart-->
+                           <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
                                              Temperature
                                         </div>
-                                        <div class="card-bodys"><canvas id="myAreaChart2" width="400px" height="200px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart2" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart2').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                        label: 'Dataset 1',
+                                                        borderColor: 'rgb(255, 99, 132)',
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                                        lineTension: 0,
+                                                        borderDash: [8, 4],
+
+                                                        }, {
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: humidity                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
                                 </div>
                             </div> 
-                                       
                         </div>
+                                       
+                        
                         
                         <div class="row">
                             <!--Pressure Chart-->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
                                              Pressure
                                         </div>
-                                        <div class="card-bodys"><canvas id="myAreaChart3" width="400px" height="200px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart3" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart3').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                        label: 'Dataset 1',
+                                                        borderColor: 'rgb(255, 99, 132)',
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                                        lineTension: 0,
+                                                        borderDash: [8, 4],
+
+                                                        }, {
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: humidity                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
                                 </div>
                             </div>
+                        
                             <!--Humidity Chart-->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
                                              Humidity
                                         </div>
-                                        <div class="card-bodys"><canvas id="myAreaChart4" width="400px" height="200px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart4" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart4').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                        label: 'Dataset 1',
+                                                        borderColor: 'rgb(255, 99, 132)',
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                                        lineTension: 0,
+                                                        borderDash: [8, 4],
+
+                                                        }, {
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: humidity                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
                                 </div>
                             </div>
                             <!--Humidity Chart-->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
                                              Humidity
                                         </div>
-                                        <div class="card-bodys"><canvas id="myAreaChart4" width="400px" height="200px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart5" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart5').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                        label: 'Dataset 1',
+                                                        borderColor: 'rgb(255, 99, 132)',
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                                        lineTension: 0,
+                                                        borderDash: [8, 4],
+
+                                                        }, {
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: humidity                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
                                 </div>
                             </div>
                             <!--Humidity Chart-->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
                                              Humidity
                                         </div>
-                                        <div class="card-bodys"><canvas id="myAreaChart4" width="400px" height="200px"></canvas></div>
+                                        <div class="card-bodys"><canvas id="myChart6" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart6').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                        label: 'Dataset 1',
+                                                        borderColor: 'rgb(255, 99, 132)',
+                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                                        lineTension: 0,
+                                                        borderDash: [8, 4],
+
+                                                        }, {
+                                                            label: 'Dataset 2',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                                            
+                                                            
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: humidity                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
                                 </div>
                             
                             </div>
