@@ -10453,3 +10453,50 @@ li span {
   height: 35px;
 }
 }
+
+@media  screen and (width: 2560px) {
+  
+  .card-bodys{
+    height: 500px;
+  }
+  #myChart{
+    height: 35px;
+  }
+  #myChart2{
+    height: 35px;
+  }
+  #myChart3{
+  height: 35px;
+  }
+  #myChart4{
+  height: 35px;
+  }#myChart5{
+  height: 35px;
+  }
+  #myChart6{
+  height: 35px;
+  }
+}
+@media  screen and (width: 1024px) {
+  
+  .card-bodys{
+    height: 220px;
+  }
+  #myChart{
+    height: 35px;
+  }
+  #myChart2{
+    height: 35px;
+  }
+  #myChart3{
+  height: 35px;
+  }
+  #myChart4{
+  height: 35px;
+  }#myChart5{
+  height: 35px;
+  }
+  #myChart6{
+  height: 35px;
+  }
+}
