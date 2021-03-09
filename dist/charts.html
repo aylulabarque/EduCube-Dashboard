@@ -187,7 +187,7 @@
                             <div class="col-xl-12">
                                 <div class="card mb-3">
                                         <div class="card-header">
-                                            Signal Quality
+                                            RSSI
                                         </div>
                                         <div class="card-bodys"><canvas id="myChart" height="45px" style="color: white;"></canvas></div>
                                         <script>
@@ -198,20 +198,10 @@
                                                 data: {
                                                    
                                                     datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
-
-                                                        }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
-                                                        }
-                                                        
+                                                        label: 'RSSI (dBm)',
+                                                        borderColor: 'rgb(255, 0, 0)',
+                                                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                                                        }  
                                                     ]
 
                                                 },
@@ -223,14 +213,14 @@
                                                         realtime: {
                                                             duration: 60000,
 							                                refresh: 5000,
-                                                           delay: 5000,
+                                                            delay: 5000,
 
                                                             onRefresh: function(chart) { 
                                                             chart.data.datasets.forEach(function(dataset) {
                                                             dataset.data.push({
                                                                 
                                                                 x: Date.now(),
-                                                                y: humidity                                        
+                                                                y: rssi                                        
                                                             });
                                                             });
                                                             
@@ -263,20 +253,10 @@
                                                 data: {
                                                    
                                                     datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
-
-                                                        }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
-                                                        }
-                                                        
+                                                        label: 'Temperature (ºC)',
+                                                        borderColor: 'rgb(255, 0, 0)',
+                                                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                                                        }  
                                                     ]
 
                                                 },
@@ -295,7 +275,7 @@
                                                             dataset.data.push({
                                                                 
                                                                 x: Date.now(),
-                                                                y: humidity                                        
+                                                                y: temperature                                        
                                                             });
                                                             });
                                                             
@@ -330,20 +310,10 @@
                                                 data: {
                                                    
                                                     datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
-
-                                                        }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
-                                                        }
-                                                        
+                                                        label: 'Pressure (hPa)',
+                                                        borderColor: 'rgb(255, 0, 0)',
+                                                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                                                        } 
                                                     ]
 
                                                 },
@@ -362,7 +332,7 @@
                                                             dataset.data.push({
                                                                 
                                                                 x: Date.now(),
-                                                                y: humidity                                        
+                                                                y: pressure                                        
                                                             });
                                                             });
                                                             
@@ -393,20 +363,10 @@
                                                 data: {
                                                    
                                                     datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
-
-                                                        }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
-                                                        }
-                                                        
+                                                        label: 'Humidity (%)',
+                                                        borderColor: 'rgb(255, 0, 0)',
+                                                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                                                        }, 
                                                     ]
 
                                                 },
@@ -440,73 +400,12 @@
                                         </script>
                                 </div>
                             </div>
+                            
                             <!--Humidity Chart-->
                             <div class="col-xl-12">
                                 <div class="card mb-4">
                                         <div class="card-header">
-                                             Humidity
-                                        </div>
-                                        <div class="card-bodys"><canvas id="myChart5" height="45px" style="color: white;"></canvas></div>
-                                        <script>
-                                            
-                                            var ctx = document.getElementById('myChart5').getContext('2d');
-                                                var chart = new Chart(ctx, {
-                                                type: 'line',
-                                                data: {
-                                                   
-                                                    datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
-
-                                                        }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
-                                                        }
-                                                        
-                                                    ]
-
-                                                },
-                                                
-                                                options: {
-                                                    scales: {
-                                                    xAxes: [{
-                                                        type: 'realtime',
-                                                        realtime: {
-                                                            duration: 60000,
-							                                refresh: 5000,
-                                                           delay: 5000,
-
-                                                            onRefresh: function(chart) { 
-                                                            chart.data.datasets.forEach(function(dataset) {
-                                                            dataset.data.push({
-                                                                
-                                                                x: Date.now(),
-                                                                y: humidity                                        
-                                                            });
-                                                            });
-                                                            
-                                                        }      
-                                                        }
-  
-                                                    }]
-                                                    }
-                                                    
-                                                }
-                                                });
-                                        </script>
-                                </div>
-                            </div>
-                            <!--Humidity Chart-->
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                        <div class="card-header">
-                                             Humidity
+                                             Power consumption 
                                         </div>
                                         <div class="card-bodys"><canvas id="myChart6" height="45px" style="color: white;"></canvas></div>
                                         <script>
@@ -517,18 +416,19 @@
                                                 data: {
                                                    
                                                     datasets: [{
-                                                        label: 'Dataset 1',
-                                                        borderColor: 'rgb(255, 99, 132)',
-                                                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                                                        lineTension: 0,
-                                                        borderDash: [8, 4],
+                                                            label: 'Battery voltage',
+                                                            borderColor: 'rgb(255, 0, 0)',
+                                                            backgroundColor: 'rgba(255, 0, 0, 0.5)',
 
                                                         }, {
-                                                            label: 'Dataset 2',
-                                                            borderColor: 'rgb(54, 162, 235)',
-                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                                                            
-                                                            
+                                                            label: 'Bus power consumption',
+                                                            borderColor: 'rgb(0, 0, 255)',
+                                                            backgroundColor: 'rgba(0, 0, 255, 0.5)', 
+                                                        },
+                                                        {
+                                                            label: 'Current Intensity',
+                                                            borderColor: 'rgb(0, 255, 0)',
+                                                            backgroundColor: 'rgba(0, 255, 0, 0.5)', 
                                                         }
                                                         
                                                     ]
@@ -564,6 +464,69 @@
                                         </script>
                                 </div>
                             
+                            </div>
+                            <!--Humidity Chart-->
+                            <div class="col-xl-12">
+                                <div class="card mb-4">
+                                        <div class="card-header">
+                                             Gyroscope
+                                        </div>
+                                        <div class="card-bodys"><canvas id="myChart5" height="45px" style="color: white;"></canvas></div>
+                                        <script>
+                                            
+                                            var ctx = document.getElementById('myChart5').getContext('2d');
+                                                var chart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                   
+                                                    datasets: [{
+                                                            label: 'X Axis',
+                                                            borderColor: 'rgb(255, 99, 132)',
+                                                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+
+                                                        }, {
+                                                            label: 'Y Axis',
+                                                            borderColor: 'rgb(54, 162, 235)',
+                                                            backgroundColor: 'rgba(54, 162, 235, 0.5)', 
+                                                        },
+                                                        {
+                                                            label: 'Z Axis',
+                                                            borderColor: 'rgb(0, 255, 0)',
+                                                            backgroundColor: 'rgba(0, 255, 0, 0.5)', 
+                                                        }
+                                                        
+                                                    ]
+
+                                                },
+                                                
+                                                options: {
+                                                    scales: {
+                                                    xAxes: [{
+                                                        type: 'realtime',
+                                                        realtime: {
+                                                            duration: 60000,
+							                                refresh: 5000,
+                                                           delay: 5000,
+
+                                                            onRefresh: function(chart) { 
+                                                            chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                
+                                                                x: Date.now(),
+                                                                y: mag_x                                        
+                                                            });
+                                                            });
+                                                            
+                                                        }      
+                                                        }
+  
+                                                    }]
+                                                    }
+                                                    
+                                                }
+                                                });
+                                        </script>
+                                </div>
                             </div>
                             
                         </div>

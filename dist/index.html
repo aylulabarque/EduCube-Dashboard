@@ -584,7 +584,7 @@
                               <div class="col-xl-6">
                                   <div class="cardg mb-4">
                                       <div class="card-header">
-                                      Humidity
+                                      Humidity (%)
                                       </div>
                                       <div class="card-body">                                
                                           <div id="gauge1" class="gauge-container one"></div>                                        
@@ -618,7 +618,7 @@
                               <div class="col-xl-6">
                                 <div class="cardg mb-4">
                                     <div class="card-header">
-                                    Temperature
+                                    Temperature (ºC)
                                     </div>
                                     <div class="card-body">
                                       <div id="gauge2" class="gauge-container one"></div>                                        
@@ -653,7 +653,7 @@
                                       <div class="col-xl-6">
                                         <div class="cardg mb-4">
                                             <div class="card-header">
-                                            Pressure
+                                            Pressure (hPa)
                                             </div>
                                             <div class="card-body">
                                               <div id="gauge3" class="gauge-container one"></div>                                        
@@ -662,7 +662,7 @@
                                     var gauge3 = Gauge(
                                         document.getElementById("gauge3"),
                                         {
-                                          max: 100,
+                                          max: 1500,
                                           dialStartAngle: -90,
                                           dialEndAngle: -90.001,
                                           value: pressure,
@@ -687,7 +687,7 @@
                                         <div class="col-xl-6">
                                           <div class="cardg mb-4">
                                               <div class="card-header">
-                                              RSSI
+                                              RSSI (dBm)
                                               </div>
                                               <div class="card-body">
                                                 <div id="gauge4" class="gauge-container one"></div>                                        
@@ -696,7 +696,8 @@
                                             var gauge4 = Gauge(
                                                 document.getElementById("gauge4"),
                                                 {
-                                                  max: 100,
+                                                  min: -150,
+                                                  max: 0,
                                                   dialStartAngle: -90,
                                                   dialEndAngle: -90.001,
                                                   value: rssi,
